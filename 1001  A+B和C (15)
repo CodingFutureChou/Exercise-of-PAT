@@ -14,6 +14,13 @@ int main()
 	return 0;
  } 
 
+注意数据类型要使用long long即可
+
+
+
+
+
+
 
 
 A+B和C (15)
