@@ -1,0 +1,68 @@
+//题目描述
+//令Pi表示第i个素数。现任给两个正整数M <= N <= 10000，请输出PM到PN的所有素数。
+//
+//输入描述:
+//输入在一行中给出M和N，其间以空格分隔。
+//
+//
+//输出描述:
+//输出从PM到PN的所有素数，每10个数字占1行，其间以空格分隔，但行末不得有多余空格。
+//
+//输入例子:
+//5 27
+//
+//输出例子:
+//11 13 17 19 23 29 31 37 41 43
+//
+//47 53 59 61 67 71 73 79 83 89
+//
+//97 101 103
+
+
+#include<cstdio>
+bool isprime(int N)
+{
+	bool ret=true;
+	for(int i=2;i*i<=N;i++)
+	{
+		if(N%i==0)
+		{
+			ret=false;
+			break;
+		}
+	}
+	
+	return ret;
+ } 
+ 
+void creatPrimes(int prime[])
+{
+	prime[0]=2;     //先将素数2放入数组，从3开始判断是不是素数，且每次递增2（即之后的“依次判断”可以 排除偶数。	
+	int i=1;        //记录prime素组里已有的素数个数 
+	int n=3;        //从3开始判断是不是素数 
+	while(i!=10000)
+	{
+		if(isprime(n)==true)
+		{
+			prime[i]=n;
+			i++;
+		 } 
+		n+=2; 
+	}
+	
+}
+int main()
+{
+	int prime[10000]={0};
+	creatPrimes(prime);
+	int M,N;
+	scanf("%d%d",&M,&N);
+	for(int i=M,cnt=0;i<=N;i++)
+	{
+		cnt++;
+		printf("%d",prime[i-1]);
+		if(cnt%10==0&&cnt!=N-M+1) printf("\n");
+		else if(cnt%10!=0&&cnt!=N-M+1)printf(" ");
+	 } 	
+	return 0;
+} 
