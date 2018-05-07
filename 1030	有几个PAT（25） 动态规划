@@ -37,3 +37,31 @@ int main()
 
 
 这题本来想到的是用3个for循环进行计数，提交上去之后全部测试点超时，在讨论中查到本动态规划方法，精妙。
+
+
+
+附原来的代码如下
+
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char l[100010];
+	scanf("%s",l);
+	int len = strlen(l);
+	long long count=0;
+	
+	for(int i=0;i<len-2;i++)
+		if(l[i]=='P')
+			for(int j=i+1j<len-1;j++)
+				if(l[j]=='A')
+					for(int k=j+1;k<len;k++)
+						if(l[k]=='T')
+							count++;
+	count%=1000000007;
+	printf("%lld",count);
+	return 0;
+}
+
+
+时间复杂度为n^3
